@@ -1,5 +1,5 @@
 name: ✨ Enhancement
-description: Add an enhancement for template
+description: Add an enhancement for awssert
 title: "[Enhancement]"
 labels: ["✨ enhancement"]
 assignees:
@@ -8,16 +8,16 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you very much for submitting feedback to template!
+        Thank you very much for submitting feedback to awssert!
   - type: checkboxes
     attributes:
       label: Search before asking
       description: >
-        Please make sure to search in the [issues](https://github.com/jossmoff/template/issues?q=is%3Aissue) first to see
+        Please make sure to search in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) first to see
         whether the same issue was reported already.
       options:
         - label: >
-            I had searched in the [issues](https://github.com/jossmoff/template/issues?q=is%3Aissue) and found no similar
+            I had searched in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) and found no similar
             issues.
           required: true
 
@@ -38,7 +38,7 @@ body:
     attributes:
       label: Are you willing to submit PR?
       description: >
-        We very much look forward to developers or users to help develop the template together.
+        We very much look forward to developers or users to help develop the awssert together.
         If you are willing to submit a PR to implement this feature, please tick it.
       options:
         - label: Yes I am willing to submit a PR!
