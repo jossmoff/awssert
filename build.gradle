@@ -1,0 +1,112 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'com.diffplug.spotless' version '6.18.0'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group = 'dev.joss'
+version = '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+ext {
+    junitVersion = "5.8.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+    implementation 'commons-validator:commons-validator:1.7'
+    implementation 'software.amazon.awssdk:arns:2.20.96'
+
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.glassfish:jakarta.el:5.0.0-M1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0-M1'
+
+
+
+}
+
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter'
+    }
+    finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+    }
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'dev.joss'
+            artifactId = 'template'
+            from components.java
+            pom {
+                name = 'template'
+                description = 'Description of this repo.'
+                url = 'https://github.com/jossmoff/template'
+                inceptionYear = '2023'
+                licenses {
+                    license {
+                        name = 'The MIT License (MIT)'
+                        url = 'http://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jossmoff'
+                        name = 'Joss Moffatt'
+                        email = 'josshmoffatt@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git@github.com:jossmoff/template.git'
+                    developerConnection = 'scm:git@github.com:jossmoff/template.git'
+                    url = 'https://github.com/jossmoff/template'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = project.findProperty("sonatypeUsername")
+                password = project.findProperty("sonatypePassword")
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = project.findProperty("signingKey")
+    def signingPassword = project.findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+}
