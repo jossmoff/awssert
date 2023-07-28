@@ -22,7 +22,8 @@ repositories {
 
 
 dependencies {
-    implementation 'org.assertj:assertj-core:3.6.1'
+    implementation 'software.amazon.awssdk:aws-sdk-java:2.20.112'
+    implementation 'org.assertj:assertj-core:3.24.2'
 }
 
 
