@@ -22,7 +22,7 @@ repositories {
 
 
 dependencies {
-    implementation 'org.assertj:assertj-core:3.6.1'
+    implementation 'org.assertj:assertj-core:3.24.2'
 }
 
 
