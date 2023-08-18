@@ -4,7 +4,6 @@ plugins {
     id 'com.diffplug.spotless' version '6.20.0'
     id 'maven-publish'
     id 'signing'
-    id 'org.assertj.generator' version '1.1.0'
 }
 
 group = 'dev.joss'
