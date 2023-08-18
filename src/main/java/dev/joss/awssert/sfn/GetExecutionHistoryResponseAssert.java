@@ -14,7 +14,7 @@ public class GetExecutionHistoryResponseAssert
     return new GetExecutionHistoryResponseAssert(actual);
   }
 
-  public GetExecutionHistoryResponseAssert hasEvents() {
+  public GetExecutionHistoryResponseAssert hasSomeEvents() {
     isNotNull();
     if (!actual.hasEvents()) {
       failWithMessage("Expected events to be present but was <%s>", actual.events());
