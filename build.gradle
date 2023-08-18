@@ -4,6 +4,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.18.0'
     id 'maven-publish'
     id 'signing'
+    id 'org.assertj.generator' version '1.1.0'
 }
 
 group = 'dev.joss'
@@ -14,6 +15,7 @@ targetCompatibility = JavaVersion.VERSION_11
 
 ext {
     junitVersion = "5.8.1"
+    awsSdkVersion = "2.20.112"
 }
 
 repositories {
@@ -22,9 +24,15 @@ repositories {
 
 
 dependencies {
-    implementation 'software.amazon.awssdk:aws-sdk-java:2.20.112'
     implementation 'org.assertj:assertj-core:3.24.2'
+    implementation("software.amazon.awssdk:sfn:${awsSdkVersion}")
+
+
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
+
 
 
 spotless {

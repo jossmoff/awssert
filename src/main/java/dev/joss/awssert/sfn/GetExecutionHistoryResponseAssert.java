@@ -10,8 +10,7 @@ public class GetExecutionHistoryResponseAssert
     super(actual, GetExecutionHistoryResponseAssert.class);
   }
 
-  public static GetExecutionHistoryResponseAssert assertThat(
-      GetExecutionHistoryResponse actual) {
+  public static GetExecutionHistoryResponseAssert assertThat(GetExecutionHistoryResponse actual) {
     return new GetExecutionHistoryResponseAssert(actual);
   }
 
