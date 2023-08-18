@@ -70,8 +70,7 @@ class GetExecutionHistoryResponseAssertTest {
         failsAssertion(() -> assertThat(actual).hasEvent(notPresentEvent));
 
     String expectedMessage =
-        String.format(
-            "Expected event %s to be present but was not found", notPresentEvent);
+        String.format("Expected event %s to be present but was not found", notPresentEvent);
     assertThat(assertionError.getMessage()).isEqualTo(expectedMessage);
   }
 
@@ -96,15 +95,13 @@ class GetExecutionHistoryResponseAssertTest {
     AssertionError assertionError1 =
         failsAssertion(() -> assertThat(actual).hasEvents(event1, notPresentEvent));
     String expectedMessage1 =
-        String.format(
-            "Expected event %s to be present but was not found", notPresentEvent);
+        String.format("Expected event %s to be present but was not found", notPresentEvent);
     assertThat(assertionError1.getMessage()).isEqualTo(expectedMessage1);
 
     AssertionError assertionError2 =
         failsAssertion(() -> assertThat(actual).hasEvents(event1, notPresentEvent));
     String expectedMessage2 =
-        String.format(
-            "Expected event %s to be present but was not found", notPresentEvent);
+        String.format("Expected event %s to be present but was not found", notPresentEvent);
     assertThat(assertionError2.getMessage()).isEqualTo(expectedMessage2);
   }
 
