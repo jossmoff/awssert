@@ -14,6 +14,7 @@ targetCompatibility = JavaVersion.VERSION_11
 
 ext {
     junitVersion = "5.8.1"
+    awsSdkVersion = "2.20.112"
 }
 
 repositories {
@@ -22,8 +23,15 @@ repositories {
 
 
 dependencies {
-    implementation 'org.assertj:assertj-core:3.24.2'
+    implementation("org.assertj:assertj-core:3.24.2")
+    implementation("software.amazon.awssdk:sfn:${awsSdkVersion}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+    testImplementation("org.mockito:mockito-core:5.5.0")
 }
+
 
 
 spotless {
