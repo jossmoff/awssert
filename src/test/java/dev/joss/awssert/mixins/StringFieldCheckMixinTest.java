@@ -38,8 +38,6 @@ class StringFieldCheckMixinTest {
         Arguments.of(null, "test"), Arguments.of("test", null), Arguments.of("test", "abc"));
   }
 
-
-
   @ParameterizedTest
   @NullSource
   @ValueSource(strings = {""})
@@ -103,10 +101,9 @@ class StringFieldCheckMixinTest {
   @MethodSource("invalidStringArguments")
   void shouldReturnErrorMessageForInvalidEndsWithCheck(String actual, String expected) {
     String expectedMessage =
-            String.format("Expected %s to end with <%s> but was <%s>", FIELD_NAME, expected, actual);
+        String.format("Expected %s to end with <%s> but was <%s>", FIELD_NAME, expected, actual);
 
-    Optional<String> actualErrorMessage =
-            mixin.hasFieldThatEndsWith(actual, expected, FIELD_NAME);
+    Optional<String> actualErrorMessage = mixin.hasFieldThatEndsWith(actual, expected, FIELD_NAME);
     assertThat(actualErrorMessage).hasValue(expectedMessage);
   }
 
@@ -114,8 +111,7 @@ class StringFieldCheckMixinTest {
   void shouldReturnEmptyMessageForValidEndsWithCheck() {
     String actual = "test";
     String expected = "st";
-    Optional<String> actualErrorMessage =
-            mixin.hasFieldThatEndsWith(actual, expected, FIELD_NAME);
+    Optional<String> actualErrorMessage = mixin.hasFieldThatEndsWith(actual, expected, FIELD_NAME);
 
     assertThat(actualErrorMessage).isEmpty();
   }
@@ -124,10 +120,9 @@ class StringFieldCheckMixinTest {
   @MethodSource("invalidStringArguments")
   void shouldReturnErrorMessageForInvalidContainsCheck(String actual, String expected) {
     String expectedMessage =
-            String.format("Expected %s to contain <%s> but was <%s>", FIELD_NAME, expected, actual);
+        String.format("Expected %s to contain <%s> but was <%s>", FIELD_NAME, expected, actual);
 
-    Optional<String> actualErrorMessage =
-            mixin.hasFieldThatContains(actual, expected, FIELD_NAME);
+    Optional<String> actualErrorMessage = mixin.hasFieldThatContains(actual, expected, FIELD_NAME);
     assertThat(actualErrorMessage).hasValue(expectedMessage);
   }
 
@@ -135,8 +130,7 @@ class StringFieldCheckMixinTest {
   void shouldReturnEmptyMessageForValidContainsCheck() {
     String actual = "test";
     String expected = "es";
-    Optional<String> actualErrorMessage =
-            mixin.hasFieldThatContains(actual, expected, FIELD_NAME);
+    Optional<String> actualErrorMessage = mixin.hasFieldThatContains(actual, expected, FIELD_NAME);
 
     assertThat(actualErrorMessage).isEmpty();
   }
@@ -147,10 +141,10 @@ class StringFieldCheckMixinTest {
     int expectedLength = 1;
 
     String expectedMessage =
-            String.format("Expected %s to have length <%s> but was null", FIELD_NAME, expectedLength);
+        String.format("Expected %s to have length <%s> but was null", FIELD_NAME, expectedLength);
 
     Optional<String> actualErrorMessage =
-            mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
+        mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
     assertThat(actualErrorMessage).hasValue(expectedMessage);
   }
 
@@ -160,10 +154,12 @@ class StringFieldCheckMixinTest {
     int expectedLength = actual.length() - 1;
 
     String expectedMessage =
-            String.format("Expected %s to have length <%s> but was <%s>", FIELD_NAME, expectedLength, actual.length());
+        String.format(
+            "Expected %s to have length <%s> but was <%s>",
+            FIELD_NAME, expectedLength, actual.length());
 
     Optional<String> actualErrorMessage =
-            mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
+        mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
     assertThat(actualErrorMessage).hasValue(expectedMessage);
   }
 
@@ -172,7 +168,7 @@ class StringFieldCheckMixinTest {
     String actual = "test";
     int expectedLength = actual.length();
     Optional<String> actualErrorMessage =
-            mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
+        mixin.hasFieldThatHasLength(actual, expectedLength, FIELD_NAME);
 
     assertThat(actualErrorMessage).isEmpty();
   }
@@ -181,10 +177,10 @@ class StringFieldCheckMixinTest {
   @MethodSource("invalidStringArguments")
   void shouldReturnErrorMessageForInvalidRegexCheck(String actual, String expected) {
     String expectedMessage =
-            String.format("Expected %s to match regex <%s> but was <%s>", FIELD_NAME, expected, actual);
+        String.format("Expected %s to match regex <%s> but was <%s>", FIELD_NAME, expected, actual);
 
     Optional<String> actualErrorMessage =
-            mixin.hasFieldThatMatchesRegex(actual, expected, FIELD_NAME);
+        mixin.hasFieldThatMatchesRegex(actual, expected, FIELD_NAME);
     assertThat(actualErrorMessage).hasValue(expectedMessage);
   }
 
@@ -193,7 +189,7 @@ class StringFieldCheckMixinTest {
     String actual = "test";
     String expectedRegex = "t.*t";
     Optional<String> actualErrorMessage =
-            mixin.hasFieldThatMatchesRegex(actual, expectedRegex, FIELD_NAME);
+        mixin.hasFieldThatMatchesRegex(actual, expectedRegex, FIELD_NAME);
 
     assertThat(actualErrorMessage).isEmpty();
   }
