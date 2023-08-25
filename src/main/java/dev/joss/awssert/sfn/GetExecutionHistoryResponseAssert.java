@@ -1,11 +1,16 @@
 package dev.joss.awssert.sfn;
 
+import dev.joss.awssert.mixins.CollectionFieldCheckMixin;
+import dev.joss.awssert.mixins.StringFieldCheckMixin;
+import java.util.List;
+import java.util.Optional;
 import org.assertj.core.api.AbstractAssert;
 import software.amazon.awssdk.services.sfn.model.GetExecutionHistoryResponse;
 import software.amazon.awssdk.services.sfn.model.HistoryEvent;
 
 public class GetExecutionHistoryResponseAssert
-    extends AbstractAssert<GetExecutionHistoryResponseAssert, GetExecutionHistoryResponse> {
+    extends AbstractAssert<GetExecutionHistoryResponseAssert, GetExecutionHistoryResponse>
+    implements CollectionFieldCheckMixin, StringFieldCheckMixin {
   private GetExecutionHistoryResponseAssert(GetExecutionHistoryResponse actual) {
     super(actual, GetExecutionHistoryResponseAssert.class);
   }
@@ -16,17 +21,15 @@ public class GetExecutionHistoryResponseAssert
 
   public GetExecutionHistoryResponseAssert hasSomeEvents() {
     isNotNull();
-    if (!actual.hasEvents()) {
-      failWithMessage("Expected events to be present but was <%s>", actual.events());
-    }
+    Optional<String> errorMessage = hasFieldThatIsNotEmpty(actual.events(), "events");
+    errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
   public GetExecutionHistoryResponseAssert hasNoEvents() {
     isNotNull();
-    if (actual.hasEvents()) {
-      failWithMessage("Expected no events to be present but was <%s>", actual.events());
-    }
+    Optional<String> errorMessage = hasFieldThatIsEmpty(actual.events(), "events");
+    errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
@@ -36,11 +39,55 @@ public class GetExecutionHistoryResponseAssert
     return this;
   }
 
-  public GetExecutionHistoryResponseAssert hasEvents(HistoryEvent... expectedEvents) {
+  public GetExecutionHistoryResponseAssert doesNotHaveEvent(HistoryEvent expectedEvent) {
     isNotNull();
-    for (HistoryEvent expectedEvent : expectedEvents) {
-      checkActualEventsContainsEvent(expectedEvent);
-    }
+    Optional<String> errorMessage = hasFieldNotContaining(actual.events(), expectedEvent, "events");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert hasAnyEvents(HistoryEvent... expectedEvents) {
+    isNotNull();
+    Optional<String> errorMessage =
+        hasFieldContainingAnyOf(actual.events(), List.of(expectedEvents), "events");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert hasAllEvents(HistoryEvent... expectedEvents) {
+    isNotNull();
+    Optional<String> errorMessage =
+        hasFieldContainingAllOf(actual.events(), List.of(expectedEvents), "events");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert hasExactlyEvents(HistoryEvent... expectedEvents) {
+    isNotNull();
+    Optional<String> errorMessage =
+        hasFieldContainingExactly(actual.events(), List.of(expectedEvents), "events");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert hasNoDuplicateEvents() {
+    isNotNull();
+    Optional<String> errorMessage = hasFieldContainingNoDuplicates(actual.events(), "events");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert hasNextToken() {
+    isNotNull();
+    Optional<String> errorMessage = hasFieldThatIsNotNullOrEmpty(actual.nextToken(), "nextToken");
+    errorMessage.ifPresent(this::failWithMessage);
+    return this;
+  }
+
+  public GetExecutionHistoryResponseAssert doesNotHaveNextToken() {
+    isNotNull();
+    Optional<String> errorMessage = hasFieldThatIsNullOrEmpty(actual.nextToken(), "nextToken");
+    errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
