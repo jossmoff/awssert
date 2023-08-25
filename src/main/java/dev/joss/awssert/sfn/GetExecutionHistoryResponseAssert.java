@@ -11,6 +11,10 @@ import software.amazon.awssdk.services.sfn.model.HistoryEvent;
 public class GetExecutionHistoryResponseAssert
     extends AbstractAssert<GetExecutionHistoryResponseAssert, GetExecutionHistoryResponse>
     implements CollectionFieldCheckMixin, StringFieldCheckMixin {
+
+  private final String EVENTS_FIELD_NAME = "events";
+  private final String TOKEN_FIELD_NAME = "nextToken";
+
   private GetExecutionHistoryResponseAssert(GetExecutionHistoryResponse actual) {
     super(actual, GetExecutionHistoryResponseAssert.class);
   }
@@ -21,14 +25,14 @@ public class GetExecutionHistoryResponseAssert
 
   public GetExecutionHistoryResponseAssert hasSomeEvents() {
     isNotNull();
-    Optional<String> errorMessage = hasFieldThatIsNotEmpty(actual.events(), "events");
+    Optional<String> errorMessage = hasFieldThatIsNotEmpty(actual.events(), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
   public GetExecutionHistoryResponseAssert hasNoEvents() {
     isNotNull();
-    Optional<String> errorMessage = hasFieldThatIsEmpty(actual.events(), "events");
+    Optional<String> errorMessage = hasFieldThatIsEmpty(actual.events(), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
@@ -41,7 +45,8 @@ public class GetExecutionHistoryResponseAssert
 
   public GetExecutionHistoryResponseAssert doesNotHaveEvent(HistoryEvent expectedEvent) {
     isNotNull();
-    Optional<String> errorMessage = hasFieldNotContaining(actual.events(), expectedEvent, "events");
+    Optional<String> errorMessage =
+        hasFieldNotContaining(actual.events(), expectedEvent, EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
@@ -49,7 +54,7 @@ public class GetExecutionHistoryResponseAssert
   public GetExecutionHistoryResponseAssert hasAnyEvents(HistoryEvent... expectedEvents) {
     isNotNull();
     Optional<String> errorMessage =
-        hasFieldContainingAnyOf(actual.events(), List.of(expectedEvents), "events");
+        hasFieldContainingAnyOf(actual.events(), List.of(expectedEvents), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
@@ -57,7 +62,7 @@ public class GetExecutionHistoryResponseAssert
   public GetExecutionHistoryResponseAssert hasAllEvents(HistoryEvent... expectedEvents) {
     isNotNull();
     Optional<String> errorMessage =
-        hasFieldContainingAllOf(actual.events(), List.of(expectedEvents), "events");
+        hasFieldContainingAllOf(actual.events(), List.of(expectedEvents), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
@@ -65,28 +70,30 @@ public class GetExecutionHistoryResponseAssert
   public GetExecutionHistoryResponseAssert hasExactlyEvents(HistoryEvent... expectedEvents) {
     isNotNull();
     Optional<String> errorMessage =
-        hasFieldContainingExactly(actual.events(), List.of(expectedEvents), "events");
+        hasFieldContainingExactly(actual.events(), List.of(expectedEvents), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
   public GetExecutionHistoryResponseAssert hasNoDuplicateEvents() {
     isNotNull();
-    Optional<String> errorMessage = hasFieldContainingNoDuplicates(actual.events(), "events");
+    Optional<String> errorMessage =
+        hasFieldContainingNoDuplicates(actual.events(), EVENTS_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
   public GetExecutionHistoryResponseAssert hasNextToken() {
     isNotNull();
-    Optional<String> errorMessage = hasFieldThatIsNotNullOrEmpty(actual.nextToken(), "nextToken");
+    Optional<String> errorMessage =
+        hasFieldThatIsNotNullOrEmpty(actual.nextToken(), TOKEN_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
 
   public GetExecutionHistoryResponseAssert doesNotHaveNextToken() {
     isNotNull();
-    Optional<String> errorMessage = hasFieldThatIsNullOrEmpty(actual.nextToken(), "nextToken");
+    Optional<String> errorMessage = hasFieldThatIsNullOrEmpty(actual.nextToken(), TOKEN_FIELD_NAME);
     errorMessage.ifPresent(this::failWithMessage);
     return this;
   }
