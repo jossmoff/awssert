@@ -1,0 +1,65 @@
+name: ✨ New Model Request
+description: Add a request for a new sdk model for awssert
+title: "[New Model Request]"
+labels: ["✨ enhancement"]
+assignees:
+  - jossmoff
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you very much for submitting feedback to awssert!
+  - type: checkboxes
+    attributes:
+      label: Search before asking
+      description: >
+        Please make sure to search in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) first to see
+        whether the same issue was reported already.
+      options:
+        - label: >
+            I have searched in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) and found no similar
+            issues.
+          required: true
+        - label: >
+            I have added the appropriate labels for the aws component this issue relates to.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Link to model
+      description: Add the link to the models documentation.
+      placeholder: >
+        https://sdk.amazonaws.com/java/api/latest/
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Describe the enhancement what you want, including motivation if it exists.
+
+  - type: textarea
+    attributes:
+      label: Solution
+      description: Add overview of proposed solution. List all fields that will want asserting on and their types.
+      placeholder: >
+        The fields are:
+        - String name
+        - Integer age
+        - List<String> hobbies
+        
+        The assertions are:
+        - hasName(String name)
+        - hasAge(Integer age)
+        - hasHobbies(String... hobbies)
+
+  - type: checkboxes
+    attributes:
+      label: Are you willing to submit PR?
+      description: >
+        We very much look forward to developers or users to help develop the awssert together.
+        If you are willing to submit a PR to implement this feature, please tick it.
+      options:
+        - label: Yes I am willing to submit a PR!
+
+  - type: markdown
+    attributes:
+      value: "Thanks for completing our form!"
