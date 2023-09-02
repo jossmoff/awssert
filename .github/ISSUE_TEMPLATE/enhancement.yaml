@@ -17,7 +17,7 @@ body:
         whether the same issue was reported already.
       options:
         - label: >
-            I had searched in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) and found no similar
+            I have searched in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) and found no similar
             issues.
           required: true
 
