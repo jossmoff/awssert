@@ -1,6 +1,6 @@
-name: ✨ Enhancement
-description: Add an enhancement for awssert
-title: "[Enhancement]"
+name: ✨ New Model Request
+description: Add a request for a new sdk model for awssert
+title: "[New Model Request]"
 labels: ["✨ enhancement"]
 assignees:
   - jossmoff
@@ -20,6 +20,16 @@ body:
             I have searched in the [issues](https://github.com/jossmoff/awssert/issues?q=is%3Aissue) and found no similar
             issues.
           required: true
+        - label: >
+            I have added the appropriate labels for the aws component this issue relates to.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Link to model
+      description: Add the link to the models documentation.
+      placeholder: >
+        https://sdk.amazonaws.com/java/api/latest/
 
   - type: textarea
     attributes:
@@ -29,10 +39,17 @@ body:
   - type: textarea
     attributes:
       label: Solution
+      description: Add overview of proposed solution. List all fields that will want asserting on and their types.
       placeholder: >
-        Add overview of proposed solution. 
-
-        Add related materials like links if they exist.
+        The fields are:
+        - String name
+        - Integer age
+        - List<String> hobbies
+        
+        The assertions are:
+        - hasName(String name)
+        - hasAge(Integer age)
+        - hasHobbies(String... hobbies)
 
   - type: checkboxes
     attributes:
