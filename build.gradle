@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
-    id 'com.diffplug.spotless' version '6.20.0'
+    id 'com.diffplug.spotless' version '6.21.0'
     id 'maven-publish'
     id 'signing'
 }
@@ -13,8 +13,8 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 ext {
-    junitVersion = "5.8.1"
-    awsSdkVersion = "2.20.112"
+    junitVersion = "5.10.0"
+    awsSdkVersion = "2.20.136"
 }
 
 repositories {
@@ -25,6 +25,7 @@ repositories {
 dependencies {
     implementation("org.assertj:assertj-core:3.24.2")
     implementation("software.amazon.awssdk:sfn:${awsSdkVersion}")
+    implementation("software.amazon.awssdk:s3:${awsSdkVersion}")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
