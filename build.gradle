@@ -26,6 +26,8 @@ dependencies {
     implementation("org.assertj:assertj-core:3.24.2")
     implementation("software.amazon.awssdk:sfn:${awsSdkVersion}")
     implementation("software.amazon.awssdk:s3:${awsSdkVersion}")
+    implementation("software.amazon.awssdk:lambda:${awsSdkVersion}")
+    implementation("com.jayway.jsonpath:json-path:2.8.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
