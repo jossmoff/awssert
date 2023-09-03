@@ -1,7 +1,7 @@
 name: ✨ New Model Request
 description: Add a request for a new sdk model for awssert
-title: "[Add custom assertions for ``]"
-labels: ["✨ enhancement"]
+title: "Add custom assertions for ``"
+labels: [":sparkles: enhancement"]
 assignees:
   - jossmoff
 body:
