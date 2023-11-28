@@ -14,7 +14,7 @@ targetCompatibility = JavaVersion.VERSION_11
 
 ext {
     junitVersion = "5.10.1"
-    awsSdkVersion = "2.21.26"
+    awsSdkVersion = "2.21.31"
 }
 
 repositories {
