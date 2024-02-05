@@ -13,7 +13,7 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 ext {
-    junitVersion = "5.10.1"
+    junitVersion = "5.10.2"
     awsSdkVersion = "2.21.36"
 }
 
